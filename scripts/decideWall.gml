@@ -7,6 +7,16 @@ if (currentX == 0 || currentX >= global.boardWidth - 1 || currentY == 0 || curre
   return true;
 }
 
+if (instance_exists(Character)){
+  var charX = floor(Character.x / global.tileSize);
+  var charY = floor(Character.y / global.tileSize);
+  if (currentX == floor(charX) && currentY == floor(charY)){
+    return false;
+  }
+}
+
+
+
 if (currentX == floor(char_start_x) && currentY == floor(char_start_y)){
   return false;
 }
