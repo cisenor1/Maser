@@ -146,7 +146,7 @@ if (vSpeed == 0 &amp;&amp; hSpeed == 0){
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -163,6 +163,7 @@ if (place_meeting(x,y,pickup_base)){
         break;
       case "health":
         health += pup.count;
+        break;
       default:
         show_message("Don't know what type of pickup that is: " + string(pup.type));
     }
@@ -197,7 +198,7 @@ if (delay &lt;= 0){
     if (weapons[currentWeapon,global.ammo_key] &gt;0){
         delay = shoot_delay;
         weapons[currentWeapon,global.ammo_key]--;
-        var insBullet = instance_create(x, y - 14,bullet);
+        var insBullet = instance_create(x, y,bullet);
         with (insBullet){ 
           damage = other.weapons[other.currentWeapon,global.damage_key];
           speed = 10    ;
