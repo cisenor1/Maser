@@ -51,8 +51,10 @@ hp = 10;
             <kind>1</kind>
             <string>/// Drop Loot?
 
-if (random(100) &gt; 20){
-  instance_create(x + (global.tileSize / 2) ,y + (global.tileSize / 2),pickup_ammo); 
+var rand = random(100);
+if (rand &gt; (100 - lootDropChance)){
+  var pup = getPickup(rand);
+  instance_create(x + (global.tileSize / 2) ,y + (global.tileSize / 2),pup); 
 }
 </string>
           </argument>

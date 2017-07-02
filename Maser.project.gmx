@@ -20,6 +20,7 @@
       <sprite>sprites\sprChar_walk_right</sprite>
       <sprite>sprites\sprChar_walk_up</sprite>
     </sprites>
+    <sprite>sprites\sprPickup_health</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -35,6 +36,9 @@
       <script>scripts\getNeighborTiles.gml</script>
     </scripts>
     <script>scripts\wallHit.gml</script>
+    <scripts name="Items">
+      <script>scripts\getPickup.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_game</font>
@@ -47,9 +51,10 @@
     <object>objects\GameController</object>
     <object>objects\bullet</object>
     <object>objects\explosion</object>
-    <object>objects\pickup_base</object>
     <objects name="Pickups">
       <object>objects\pickup_ammo</object>
+      <object>objects\pickup_base</object>
+      <object>objects\pickup_health</object>
     </objects>
     <objects name="GUI">
       <object>objects\object8</object>

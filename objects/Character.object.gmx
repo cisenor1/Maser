@@ -39,6 +39,9 @@ global.ammo_key = 1;
 global.damage_key = 2;
 global.char_image_speed = .15;
 image_speed = global.char_image_speed;
+if (debug_mode){
+  weapons[0,1] = 300;
+}
 
 </string>
           </argument>
@@ -74,20 +77,6 @@ if (delay &gt; 0){
     delay -= delta_time;
 }
 
-//Pickup?
-if (place_meeting(x,y,pickup_base)){
-    var pup = instance_place(x,y,pickup_base);
-    switch (pup.type){
-      case "ammo":
-        weapons[currentWeapon,global.ammo_key] += pup.count;
-        with(pup){
-          instance_destroy();
-        }
-        break;
-      default:
-        show_message("Don't know what type of pickup that is.");
-    }
-}
  
 //Horizontal Collision
 if (place_meeting(x+hSpeed,y,Wall))
@@ -143,6 +132,44 @@ if (vSpeed == 0 &amp;&amp; hSpeed == 0){
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for pickups
+
+//Pickup?
+if (place_meeting(x,y,pickup_base)){
+    var pup = instance_place(x,y,pickup_base);
+    switch (pup.type){
+      case "ammo":
+        weapons[currentWeapon,global.ammo_key] += pup.count;
+        break;
+      case "health":
+        health += pup.count;
+      default:
+        show_message("Don't know what type of pickup that is: " + string(pup.type));
+    }
+    with(pup){
+      instance_destroy();
+    }
+}
 </string>
           </argument>
         </arguments>
