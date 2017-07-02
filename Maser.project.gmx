@@ -56,7 +56,6 @@
       <object>objects\object8</object>
     </objects>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\Board</room>
   </rooms>
