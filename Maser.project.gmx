@@ -28,6 +28,7 @@
     </sprites>
     <sprite>sprites\sprite15</sprite>
     <sprite>sprites\sprWallIndestructable</sprite>
+    <sprite>sprites\sprite16</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -48,6 +49,7 @@
     </scripts>
     <scripts name="Pickups">
       <script>scripts\getPistol.gml</script>
+      <script>scripts\getRifle.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
