@@ -40,7 +40,6 @@
     <font>fonts\fnt_game</font>
   </fonts>
   <objects name="objects">
-    <object>objects\WallCreator</object>
     <objects name="Elements">
       <object>objects\Wall</object>
     </objects>
