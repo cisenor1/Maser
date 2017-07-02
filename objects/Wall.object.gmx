@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>/// Instantiate the wall
+visible_sprite = sprite_index;
+destructable = true;
 hp = 10;
 </string>
           </argument>

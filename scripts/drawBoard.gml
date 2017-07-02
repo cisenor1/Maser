@@ -12,11 +12,12 @@ for (var i = 0; i < global.boardHeight; i++){
   var nowY = i * global.tileSize;
   for (var j = 0; j < global.boardWidth; j++){ 
     var nowX = j * global.tileSize;
-    if(decideWall(j,i)){
-      instance_create(nowX,nowY, Wall);
+    var tile = decideWall(j,i);
+    instance_create(nowX,nowY,tile);
+    
+    if(tile == Wall){ 
       global.boardArray[j,i] = 'w';
     }else{
-      instance_create(nowX,nowY, Floor);
       global.boardArray[j,i] = 0;
     }
   }

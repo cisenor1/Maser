@@ -651,8 +651,8 @@
     <option_xbone_title_id>1234ABCD</option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="14">
-      <constant name="movementSpeed">50</constant>
+    <constants number="17">
+      <constant name="movementSpeed">70</constant>
       <constant name="wallHasNeighborSpawnChance">44</constant>
       <constant name="wallHasNoNeighborSpawnChance">14</constant>
       <constant name="desired_fps">30</constant>
@@ -666,6 +666,9 @@
       <constant name="shoot_delay">100</constant>
       <constant name="startingHealth">100</constant>
       <constant name="lootDropChance">20</constant>
+      <constant name="runSpeedMultiplier">1.8</constant>
+      <constant name="startingStamina">100</constant>
+      <constant name="staminaDepletionSpeed">20</constant>
     </constants>
   </ConfigConstants>
 </Config>

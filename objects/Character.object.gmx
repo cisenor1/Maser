@@ -3,7 +3,7 @@
   <spriteName>sprChar_walk_down</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-1</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -30,14 +30,11 @@ bulletSpeed = 50 * delta_time / 1000000;
 delay = 0;
 facing = 1; 
 health = startingHealth;
-weapons[0,0] = 'pistol';
-weapons[0,1] = 10;
-weapons[0,2] = 4;
+var pistol = getPistol();
+weapons[0] = pistol;
 currentWeapon = 0;
-global.weapon_key = 0;
-global.ammo_key = 1;
-global.damage_key = 2;
 global.char_image_speed = .15;
+stamina = startingStamina;
 image_speed = global.char_image_speed;
 if (debug_mode){
   weapons[0,1] = 300;
@@ -87,7 +84,6 @@ if (place_meeting(x+hSpeed,y,Wall))
     }
     hSpeed = 0;
 }
-x += hSpeed; 
 
 //Vertical Collision
 if (place_meeting(x,y+vSpeed,Wall))
@@ -97,8 +93,18 @@ if (place_meeting(x,y+vSpeed,Wall))
         y += sign(vSpeed);
     }
     vSpeed = 0;
+}// Check running
+if (keyboard_check(vk_shift) &amp;&amp; stamina &gt; 0){
+    vSpeed *= runSpeedMultiplier;
+    hSpeed *= runSpeedMultiplier;
+    if (vSpeed != 0 || hSpeed != 0){
+      stamina -= staminaDepletionSpeed * global.deltaTime;
+    }
 }
+x += hSpeed; 
 y += vSpeed;
+
+
 // Set facing
 if (hSpeed &gt; 0){
   facing = 0;
@@ -159,7 +165,9 @@ if (place_meeting(x,y,pickup_base)){
     var pup = instance_place(x,y,pickup_base);
     switch (pup.type){
       case "ammo":
-        weapons[currentWeapon,global.ammo_key] += pup.count;
+        var wep = weapons[currentWeapon];
+        
+        wep[global.ammo_key] += pup.count;
         break;
       case "health":
         health += pup.count;
@@ -195,86 +203,18 @@ if (place_meeting(x,y,pickup_base)){
             <kind>1</kind>
             <string>///Fire
 if (delay &lt;= 0){
-    if (weapons[currentWeapon,global.ammo_key] &gt;0){
+    var wep = weapons[currentWeapon];
+    if (wep[global.ammo_key] &gt;0){
         delay = shoot_delay;
-        weapons[currentWeapon,global.ammo_key]--;
+        wep[global.ammo_key]--;
         var insBullet = instance_create(x, y,bullet);
         with (insBullet){ 
-          damage = other.weapons[other.currentWeapon,global.damage_key];
+          damage = wep[global.damage_key];
           speed = 10    ;
           direction = point_direction(other.x,other.y,mouse_x,mouse_y);  
         }
     } 
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>723</id>
-        <kind>0</kind>
-        <userelative>-1</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_draw_health</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>0</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>4</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>200</string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string>10</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>1</string>
-          </argument>
-          <argument>
-            <kind>4</kind>
-            <string>0</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Keep track of score-y things
-
-
-draw_set_halign(fa_right);
-draw_set_font(fnt_game); 
-draw_text((room_width - 10), (room_height - 40), "Weapon: " + string(weapons[currentWeapon,global.weapon_key]));
-draw_text((room_width - 10), (room_height - 20), "Ammo: " + string(weapons[currentWeapon,global.ammo_key]));
 </string>
           </argument>
         </arguments>

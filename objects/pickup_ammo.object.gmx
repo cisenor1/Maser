@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize pickup
+visible_sprite = spr_pickup_ammo;
 type = "ammo";
 count = 10;
 </string>
