@@ -16,6 +16,7 @@ for (var i = 0; i < global.boardHeight; i++){
       instance_create(nowX,nowY, Wall);
       global.boardArray[j,i] = 'w';
     }else{
+      instance_create(nowX,nowY, Floor);
       global.boardArray[j,i] = 0;
     }
   }

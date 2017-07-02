@@ -7,7 +7,7 @@ if (currentX == 0 || currentX >= global.boardWidth - 1 || currentY == 0 || curre
   return true;
 }
 
-if (currentX == char_start_x && currentY == char_start_y){
+if (currentX == floor(char_start_x) && currentY == floor(char_start_y)){
   return false;
 }
 

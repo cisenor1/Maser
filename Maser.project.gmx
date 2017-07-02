@@ -6,21 +6,25 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\sprWall</sprite>
     <sprite>sprites\sprChar_Idle</sprite>
     <sprite>sprites\sprChar_Run</sprite>
     <sprite>sprites\sprChar_Shoot</sprite>
     <sprite>sprites\sprBullet</sprite>
     <sprite>sprites\sprExplosion</sprite>
-    <sprite>sprites\sprite6</sprite>
-    <sprite>sprites\spr_pickup_ammo</sprite>
     <sprites name="Char">
       <sprite>sprites\sprChar_walk_left</sprite>
       <sprite>sprites\sprChar_walk_down</sprite>
       <sprite>sprites\sprChar_walk_right</sprite>
       <sprite>sprites\sprChar_walk_up</sprite>
     </sprites>
-    <sprite>sprites\sprPickup_health</sprite>
+    <sprite>sprites\sprWall</sprite>
+    <sprites name="Elements">
+      <sprite>sprites\sprFloor</sprite>
+    </sprites>
+    <sprites name="Pickups">
+      <sprite>sprites\spr_pickup_ammo</sprite>
+      <sprite>sprites\sprPickup_health</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -46,6 +50,8 @@
   <objects name="objects">
     <objects name="Elements">
       <object>objects\Wall</object>
+      <object>objects\Floor</object>
+      <object>objects\Shadeable</object>
     </objects>
     <object>objects\Character</object>
     <object>objects\GameController</object>
