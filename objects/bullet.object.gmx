@@ -28,8 +28,15 @@
             <string>/// Check Collisions
 
 if (place_meeting(x,y,Wall)){
+    // Hit Wall
     var wall = instance_place(x,y,Wall);
     wallHit(wall,damage);
+    instance_create(x, y,explosion);
+    instance_destroy();
+}
+if (place_meeting(x,y,MonsterBase)){
+    var monster = instance_place(x,y,MonsterBase);
+    monster.myHealth -= damage; 
     instance_create(x, y,explosion);
     instance_destroy();
 }

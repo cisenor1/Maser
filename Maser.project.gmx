@@ -29,6 +29,12 @@
     <sprite>sprites\sprite15</sprite>
     <sprite>sprites\sprWallIndestructable</sprite>
     <sprite>sprites\sprite16</sprite>
+    <sprites name="Monsters">
+      <sprites name="Slimer">
+        <sprite>sprites\sprSlimer_idle</sprite>
+        <sprite>sprites\sprSlimer_death</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -42,6 +48,7 @@
       <script>scripts\drawBoard.gml</script>
       <script>scripts\clearBoard.gml</script>
       <script>scripts\getNeighborTiles.gml</script>
+      <script>scripts\getRandomEnemy.gml</script>
     </scripts>
     <script>scripts\wallHit.gml</script>
     <scripts name="Items">
@@ -50,6 +57,11 @@
     <scripts name="Pickups">
       <script>scripts\getPistol.gml</script>
       <script>scripts\getRifle.gml</script>
+    </scripts>
+    <scripts name="Utility">
+      <script>scripts\canSee.gml</script>
+      <script>scripts\script11.gml</script>
+      <script>scripts\rollChance.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -74,6 +86,10 @@
     <objects name="GUI">
       <object>objects\HudBox</object>
       <object>objects\Hud</object>
+    </objects>
+    <objects name="Monsters">
+      <object>objects\Slimer</object>
+      <object>objects\MonsterBase</object>
     </objects>
   </objects>
   <rooms name="rooms">

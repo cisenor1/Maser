@@ -21,4 +21,20 @@ for (var i = 0; i < global.boardHeight; i++){
       global.boardArray[j,i] = 0;
     }
   }
+} 
+
+
+var totalEnemiesOnBoard = 0;
+while (totalEnemiesOnBoard <= totalEnemies){
+    for (var i = 0; i < global.boardHeight; i++){
+      for (var j = 0; j< global.boardWidth; j++){
+        if (global.boardArray[j,i] == 0){ 
+          var enemyHereChance = random(100);
+          if (rollChance(enemySpawnChance) && totalEnemiesOnBoard <= totalEnemies){
+            instance_create(j * global.tileSize, i * global.tileSize,getRandomEnemy(1));
+            totalEnemiesOnBoard++;
+          }
+        }
+      }
+    }
 }

@@ -651,7 +651,7 @@
     <option_xbone_title_id>1234ABCD</option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="17">
+    <constants number="19">
       <constant name="movementSpeed">70</constant>
       <constant name="wallHasNeighborSpawnChance">44</constant>
       <constant name="wallHasNoNeighborSpawnChance">14</constant>
@@ -669,6 +669,8 @@
       <constant name="runSpeedMultiplier">1.8</constant>
       <constant name="startingStamina">100</constant>
       <constant name="staminaDepletionSpeed">20</constant>
+      <constant name="enemySpawnChance">2</constant>
+      <constant name="totalEnemies">4</constant>
     </constants>
   </ConfigConstants>
 </Config>
