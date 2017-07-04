@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize
+visible_sprite = sprite_index;
 myHealth = 5;
 mySpeed = 75;
 damage =1;

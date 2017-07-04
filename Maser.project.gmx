@@ -4,7 +4,15 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\Slimer1</sound>
+    <sound>sound\Slimer2</sound>
+    <sound>sound\sndPistol</sound>
+    <sound>sound\sndRifle</sound>
+    <sounds name="Music">
+      <sound>sound\Background</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprChar_Idle</sprite>
     <sprite>sprites\sprChar_Run</sprite>
@@ -25,6 +33,7 @@
     <sprites name="Pickups">
       <sprite>sprites\spr_pickup_ammo</sprite>
       <sprite>sprites\sprPickup_health</sprite>
+      <sprite>sprites\sprPickup_stamina</sprite>
     </sprites>
     <sprite>sprites\sprite15</sprite>
     <sprite>sprites\sprWallIndestructable</sprite>
@@ -36,6 +45,7 @@
         <sprite>sprites\sprSlimer_move_right</sprite>
       </sprites>
     </sprites>
+    <sprite>sprites\sprite21</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -84,6 +94,7 @@
       <object>objects\pickup_ammo</object>
       <object>objects\pickup_base</object>
       <object>objects\pickup_health</object>
+      <object>objects\pickup_stamina</object>
     </objects>
     <objects name="GUI">
       <object>objects\HudBox</object>

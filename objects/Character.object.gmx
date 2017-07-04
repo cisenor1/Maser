@@ -29,7 +29,8 @@
 bulletSpeed = 50 * delta_time / 1000000;
 facing = 1; 
 health = startingHealth; 
-weapons[0] = getRifle(); 
+weapons[0] = getPistol();
+weapons[1] = getRifle(); 
 currentWeapon = 0;
 shootCooldown = 0; 
 global.char_image_speed = .15;
@@ -37,6 +38,30 @@ stamina = startingStamina;
 image_speed = global.char_image_speed; 
 
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>Background</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>1</string>
           </argument>
         </arguments>
       </action>
@@ -70,7 +95,10 @@ if (place_meeting(x,y,pickup_base)){
         wep[global.ammo_key] += pup.count;
         break;
       case "health":
-        health += pup.count;
+        health = min (health + pup.count,startingHealth);
+        break; 
+      case "stamina":
+        stamina = min(stamina + pup.count,startingStamina);
         break;
       default:
         show_message("Don't know what type of pickup that is: " + string(pup.type));
@@ -180,6 +208,30 @@ if (vSpeed == 0 &amp;&amp; hSpeed == 0){
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="60">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>health -= 10;
+currentWeapon = (currentWeapon + 1) % array_length_1d(weapons);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="50">
       <action>
         <libid>1</libid>
@@ -200,9 +252,13 @@ if (vSpeed == 0 &amp;&amp; hSpeed == 0){
             <string>///Fire 
 if (shootCooldown &lt;= 0){
     var wep = weapons[currentWeapon];
-    if (wep[global.ammo_key] &gt;0){
-        wep[global.ammo_key]--;
+    var ammo = wep[global.ammo_key];
+    if (ammo &gt; 0){
+        ammo--;
+        wep[global.ammo_key] = ammo;
+        weapons[currentWeapon] = wep;
         shootCooldown = wep[global.cooldown_key];
+        audio_play_sound(wep[global.sound_key],1,false);
         var insBullet = instance_create(x, y,bullet);
         with (insBullet){ 
           damage = wep[global.damage_key];
@@ -211,109 +267,6 @@ if (shootCooldown &lt;= 0){
         }
     } 
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>clearBoard</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>drawBoard</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>health -= 10;
 </string>
           </argument>
         </arguments>
