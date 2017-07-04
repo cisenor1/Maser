@@ -27,18 +27,14 @@
             <kind>1</kind>
             <string>///Instantiate
 bulletSpeed = 50 * delta_time / 1000000;
-delay = 0;
 facing = 1; 
-health = startingHealth;
-var pistol = getPistol();
-weapons[0] = getRifle();
+health = startingHealth; 
+weapons[0] = getRifle(); 
 currentWeapon = 0;
+shootCooldown = 0; 
 global.char_image_speed = .15;
 stamina = startingStamina;
-image_speed = global.char_image_speed;
-if (debug_mode){
-  weapons[0,1] = 300;
-}
+image_speed = global.char_image_speed; 
 
 </string>
           </argument>
@@ -46,6 +42,47 @@ if (debug_mode){
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>other</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for pickups
+
+//Pickup?
+if (place_meeting(x,y,pickup_base)){
+    var pup = instance_place(x,y,pickup_base);
+    switch (pup.type){
+      case "ammo":
+        var wep = weapons[currentWeapon];
+        
+        wep[global.ammo_key] += pup.count;
+        break;
+      case "health":
+        health += pup.count;
+        break;
+      default:
+        show_message("Don't know what type of pickup that is: " + string(pup.type));
+    }
+    with(pup){
+      instance_destroy();
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -70,8 +107,8 @@ var hSpeed = xMove * movementSpeed * delta_time / 1000000;
 var vSpeed = yMove * movementSpeed * delta_time / 1000000;
 
 // Tick away shooting delay.
-if (delay &gt; 0){
-    delay -= delta_time;
+if (shootCooldown &gt; 0){
+    shootCooldown -= global.deltaTime;
 }
 
  
@@ -142,49 +179,8 @@ if (vSpeed == 0 &amp;&amp; hSpeed == 0){
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>other</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Check for pickups
-
-//Pickup?
-if (place_meeting(x,y,pickup_base)){
-    var pup = instance_place(x,y,pickup_base);
-    switch (pup.type){
-      case "ammo":
-        var wep = weapons[currentWeapon];
-        
-        wep[global.ammo_key] += pup.count;
-        break;
-      case "health":
-        health += pup.count;
-        break;
-      default:
-        show_message("Don't know what type of pickup that is: " + string(pup.type));
-    }
-    with(pup){
-      instance_destroy();
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
-    <event eventtype="6" enumb="53">
+    <event eventtype="6" enumb="50">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -201,12 +197,12 @@ if (place_meeting(x,y,pickup_base)){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Fire
-if (delay &lt;= 0){
+            <string>///Fire 
+if (shootCooldown &lt;= 0){
     var wep = weapons[currentWeapon];
     if (wep[global.ammo_key] &gt;0){
-        delay = shoot_delay;
         wep[global.ammo_key]--;
+        shootCooldown = wep[global.cooldown_key];
         var insBullet = instance_create(x, y,bullet);
         with (insBullet){ 
           damage = wep[global.damage_key];

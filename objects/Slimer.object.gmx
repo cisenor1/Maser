@@ -58,7 +58,7 @@ attackCooldown = 0;
 if (attackCooldown &gt;= 0){
   attackCooldown -= global.deltaTime;
 }
-if (health &gt; 0){
+if (myHealth &gt; 0){
     if (canSee(self,Character,Wall)){
         // Move towards player. 
         direction = point_direction(x,y,Character.x,Character.y); 
