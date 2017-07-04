@@ -33,10 +33,13 @@
       <sprites name="Slimer">
         <sprite>sprites\sprSlimer_idle</sprite>
         <sprite>sprites\sprSlimer_death</sprite>
+        <sprite>sprites\sprSlimer_move_right</sprite>
       </sprites>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="Movement">

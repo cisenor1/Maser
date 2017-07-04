@@ -28,6 +28,9 @@
             <string>/// Initialize
 myHealth = 5;
 mySpeed = 75;
+damage =1;
+myAttackCooldown = .25;
+attackCooldown = 0;
 
 </string>
           </argument>
@@ -52,12 +55,36 @@ mySpeed = 75;
           <argument>
             <kind>1</kind>
             <string>/// Move
-if (canSee(self,Character,Wall)){
-    // Move towards player. 
-    direction = point_direction(x,y,Character.x,Character.y); 
-    speed = mySpeed * global.deltaTime;
-}else{
-    speed = 0;
+if (attackCooldown &gt;= 0){
+  attackCooldown -= global.deltaTime;
+}
+if (health &gt; 0){
+    if (canSee(self,Character,Wall)){
+        // Move towards player. 
+        direction = point_direction(x,y,Character.x,Character.y); 
+        speed = mySpeed * global.deltaTime;
+        facing = floor(direction / 90);
+       if (facing == 0){
+            image_xscale = 1;
+            sprite_index = sprSlimer_move_right;
+        }else if (facing ==2){
+            image_xscale = -1;
+            sprite_index = sprSlimer_move_right; 
+        }
+    }else{
+        sprite_index = sprSlimer_idle;
+        speed = 0;
+    }
+    if (place_meeting(x,y,Wall)){
+      speed = 0;
+    }
+    if (place_meeting(x,y,Character)){
+      if (attackCooldown &lt;= 0){
+        var char = instance_place(x,y,Character);
+        char.health -= damage;
+        attackCooldown = myAttackCooldown;
+      }
+    }
 }
 </string>
           </argument>

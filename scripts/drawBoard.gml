@@ -31,7 +31,7 @@ while (totalEnemiesOnBoard <= totalEnemies){
         if (global.boardArray[j,i] == 0){ 
           var enemyHereChance = random(100);
           if (rollChance(enemySpawnChance) && totalEnemiesOnBoard <= totalEnemies){
-            instance_create(j * global.tileSize, i * global.tileSize,getRandomEnemy(1));
+            instance_create((j * global.tileSize)+(global.tileSize / 2), (i * global.tileSize) + (global.tileSize / 2),getRandomEnemy(1));
             totalEnemiesOnBoard++;
           }
         }
