@@ -9,9 +9,9 @@ for (var i = 0; i < global.boardHeight; i++){
 }
 
 for (var i = 0; i < global.boardHeight; i++){
-  var nowY = i * global.tileSize;
+  var nowY = i * global.tileSize  - global.tileSize / 2;
   for (var j = 0; j < global.boardWidth; j++){ 
-    var nowX = j * global.tileSize;
+    var nowX = j * global.tileSize  - global.tileSize / 2;
     var tile = decideWall(j,i);
     instance_create(nowX,nowY,tile);
     
@@ -27,14 +27,16 @@ for (var i = 0; i < global.boardHeight; i++){
 var totalEnemiesOnBoard = 0;
 while (totalEnemiesOnBoard <= totalEnemies){
     for (var i = 0; i < global.boardHeight; i++){
-      for (var j = 0; j< global.boardWidth; j++){
+      for (var j = 0; j< global.boardWidth; j++){ 
         if (global.boardArray[j,i] == 0){ 
           var enemyHereChance = random(100);
           if (rollChance(enemySpawnChance) && totalEnemiesOnBoard <= totalEnemies){
             instance_create((j * global.tileSize)+(global.tileSize / 2), (i * global.tileSize) + (global.tileSize / 2),getRandomEnemy(1));
             totalEnemiesOnBoard++;
           }
-        }
+        } 
       }
     }
 }
+
+refreshWalls();

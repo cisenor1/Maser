@@ -656,8 +656,8 @@
       <constant name="wallHasNeighborSpawnChance">44</constant>
       <constant name="wallHasNoNeighborSpawnChance">14</constant>
       <constant name="desired_fps">30</constant>
-      <constant name="char_start_x">1.5</constant>
-      <constant name="char_start_y">1.5</constant>
+      <constant name="char_start_x">2</constant>
+      <constant name="char_start_y">2</constant>
       <constant name="tile_size">32</constant>
       <constant name="key_right">"D"</constant>
       <constant name="key_left">"A"</constant>

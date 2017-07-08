@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>visible_sprite = sprite_index;
 destructable = false;
+visible_index = 0;
 </string>
           </argument>
         </arguments>

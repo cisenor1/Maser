@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// Initialize
 visible_sprite = sprite_index;
+visible_index = 0;
 myHealth = 5;
 mySpeed = 75;
 damage =1;

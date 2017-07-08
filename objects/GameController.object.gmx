@@ -36,7 +36,7 @@ global.damage_key = 2;
 global.cooldown_key = 3;
 global.sound_key = 4;
 instance_create(char_start_x* global.tileSize, char_start_y * global.tileSize,Character)
-drawBoard();
+//drawBoard();
 </string>
           </argument>
         </arguments>

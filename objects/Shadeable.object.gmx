@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>/// Initialize
 visible_sprite = sprite_index;
+image_index = 0;
 </string>
           </argument>
         </arguments>
@@ -53,12 +54,16 @@ visible_sprite = sprite_index;
 if (!visible_sprite){
   visible_sprite = sprite_index;
 }
-var wallIntheWay = collision_line(x, y, Character.x, Character.y, Wall, false, true); 
+if (!visible_index){
+  visible_index = image_index;
+}
+/*var wallIntheWay = collision_line(x, y, Character.x, Character.y, Wall, false, true); 
 if (wallIntheWay){ 
   sprite_index = sprShadow;
 }else{ 
   sprite_index = visible_sprite;
-} 
+  image_index = visible_index;
+} */
 </string>
           </argument>
         </arguments>
